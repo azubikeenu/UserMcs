@@ -1,4 +1,6 @@
 package com.azubike.ellipsis.usermcs.repository;
 
-public class UserTransactionRespository {
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+
+public interface UserTransactionRepository extends ReactiveCrudRepository<UserTransactionRepository , Integer> {
 }
