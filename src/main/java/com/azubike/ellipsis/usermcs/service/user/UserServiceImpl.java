@@ -45,11 +45,7 @@ public class UserServiceImpl implements UserService {
   public Mono<UserDto> updateUser(Mono<UserDto> userDtoMono, int id) {
     return userRepository
         .findById(id)
-        .flatMap(
-            p ->
-                userDtoMono.map(
-                    EntityMapper
-                        ::dtoToUser)) // this step converts the userDto to a product entity
+        .flatMap(p -> userDtoMono.map(EntityMapper::dtoToUser))
         .flatMap(userRepository::save)
         .map(EntityMapper::userToDto);
   }
