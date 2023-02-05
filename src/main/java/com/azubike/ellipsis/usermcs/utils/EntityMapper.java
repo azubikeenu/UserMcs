@@ -27,7 +27,7 @@ public class EntityMapper {
     final UserTransaction userTransaction = new UserTransaction();
     userTransaction.setAmount(transactionRequestDto.getAmount());
     userTransaction.setUserId(transactionRequestDto.getUserId());
-    userTransaction.setTransactionTime(LocalDateTime.now());
+    userTransaction.setTransactionDate(LocalDateTime.now());
     return userTransaction;
   }
 

@@ -20,6 +20,11 @@ public class UserController {
     return userService.getAllUsers();
   }
 
+  @GetMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public Mono<UserDto> getUserById(@PathVariable("id") int id) {
+    return userService.getUserById(id);
+  }
+
   @ResponseStatus(HttpStatus.CREATED)
   @PostMapping(
       produces = MediaType.APPLICATION_JSON_VALUE,

@@ -10,5 +10,5 @@ public class UserTransaction {
   @Id private Integer id;
   private Integer userId;
   private Integer amount;
-  private LocalDateTime transactionTime;
+  private LocalDateTime transactionDate;
 }

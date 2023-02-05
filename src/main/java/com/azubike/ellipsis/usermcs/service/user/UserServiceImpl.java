@@ -43,8 +43,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public Mono<UserDto> updateUser(Mono<UserDto> userDtoMono, int id) {
-    return userRepository
-        .findById(id)
+    return this.getUserById(id)
         .flatMap(p -> userDtoMono.map(EntityMapper::dtoToUser))
         .flatMap(userRepository::save)
         .map(EntityMapper::userToDto);
@@ -53,6 +52,6 @@ public class UserServiceImpl implements UserService {
   private <T> Mono<T> monoResponseStatusNotFoundException(int id) {
     return Mono.error(
         new ResponseStatusException(
-            HttpStatus.NOT_FOUND, "user  with given id : " + id + " Not found"));
+            HttpStatus.NOT_FOUND, "user  with given id:" + id + " Not found"));
   }
 }
