@@ -2,9 +2,13 @@ package com.azubike.ellipsis.usermcs.utils;
 
 import com.azubike.ellipsis.usermcs.dto.request.TransactionRequestDto;
 import com.azubike.ellipsis.usermcs.dto.request.UserDto;
+import com.azubike.ellipsis.usermcs.dto.response.TransactionResponseDto;
+import com.azubike.ellipsis.usermcs.dto.response.TransactionStatus;
 import com.azubike.ellipsis.usermcs.entities.User;
 import com.azubike.ellipsis.usermcs.entities.UserTransaction;
 import org.springframework.beans.BeanUtils;
+
+import java.time.LocalDateTime;
 
 public class EntityMapper {
   public static UserDto userToDto(User user) {
@@ -21,13 +25,19 @@ public class EntityMapper {
 
   public static UserTransaction dtoToUserTransaction(TransactionRequestDto transactionRequestDto) {
     final UserTransaction userTransaction = new UserTransaction();
-    BeanUtils.copyProperties(transactionRequestDto, userTransaction);
+    userTransaction.setAmount(transactionRequestDto.getAmount());
+    userTransaction.setUserId(transactionRequestDto.getUserId());
+    userTransaction.setTransactionTime(LocalDateTime.now());
     return userTransaction;
   }
 
-  public static TransactionRequestDto  userTransactionToDto(UserTransaction userTransaction){
-      final TransactionRequestDto transactionRequestDto = new TransactionRequestDto();
-      BeanUtils.copyProperties(userTransaction , transactionRequestDto);
-      return transactionRequestDto;
+  public static TransactionResponseDto transactionRequestToResponse(
+      TransactionRequestDto requestDto, TransactionStatus status) {
+    TransactionResponseDto responseDto = new TransactionResponseDto();
+    responseDto.setUserId(requestDto.getUserId());
+    responseDto.setAmount(requestDto.getAmount());
+    responseDto.setStatus(status);
+
+    return responseDto;
   }
 }

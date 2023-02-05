@@ -6,5 +6,5 @@ import lombok.Data;
 public class TransactionResponseDto {
     private Integer userId ;
     private TransactionStatus status;
-    private Integer balance ;
+    private Integer amount ;
 }
