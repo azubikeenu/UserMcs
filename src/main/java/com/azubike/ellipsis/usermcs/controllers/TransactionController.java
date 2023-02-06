@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono;
 public class TransactionController {
   private final TransactionService transactionService;
 
-  @ResponseStatus(HttpStatus.CREATED)
+  @ResponseStatus(HttpStatus.OK)
   @PostMapping
   public Mono<TransactionResponseDto> createTransaction(
       @RequestBody Mono<TransactionRequestDto> transactionRequestDto) {

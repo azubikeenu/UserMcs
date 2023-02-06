@@ -10,6 +10,9 @@ CREATE TABLE user_transaction(
    user_id bigint ,
    amount bigint ,
    transaction_date timestamp ,
-   foreign key(user_id) references users(id),
+   foreign key(user_id) references users(id) ON DELETE CASCADE ,
    primary key(id)
 );
+
+
+INSERT INTO users (name , balance) VALUES ('Richard' , 2000), ('Amaka' , 2500) , ('Boma' , 1700), ('Mike' , 4200);
