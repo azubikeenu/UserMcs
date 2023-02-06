@@ -4,6 +4,7 @@ import com.azubike.ellipsis.usermcs.dto.request.TransactionRequestDto;
 import com.azubike.ellipsis.usermcs.dto.request.UserDto;
 import com.azubike.ellipsis.usermcs.dto.response.TransactionResponseDto;
 import com.azubike.ellipsis.usermcs.dto.response.TransactionStatus;
+import com.azubike.ellipsis.usermcs.dto.response.UserTransactionResponseDto;
 import com.azubike.ellipsis.usermcs.entities.User;
 import com.azubike.ellipsis.usermcs.entities.UserTransaction;
 import org.springframework.beans.BeanUtils;
@@ -39,5 +40,14 @@ public class EntityMapper {
     responseDto.setStatus(status);
 
     return responseDto;
+  }
+
+  public static UserTransactionResponseDto userTransactionToResponse(
+      UserTransaction userTransaction) {
+    UserTransactionResponseDto userTransactionResponseDto = new UserTransactionResponseDto();
+    userTransactionResponseDto.setAmount(userTransaction.getAmount());
+    userTransactionResponseDto.setUserId(userTransaction.getUserId());
+    userTransactionResponseDto.setTransactionDate(userTransaction.getTransactionDate());
+    return userTransactionResponseDto;
   }
 }

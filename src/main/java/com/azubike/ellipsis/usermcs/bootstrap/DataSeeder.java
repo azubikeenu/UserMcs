@@ -11,7 +11,7 @@ import org.springframework.util.StreamUtils;
 
 import java.nio.charset.StandardCharsets;
 
-@Component
+//@Component
 @Slf4j
 @RequiredArgsConstructor
 public class DataSeeder implements CommandLineRunner {

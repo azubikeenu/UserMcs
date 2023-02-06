@@ -2,6 +2,9 @@ server:
   port: 8092
 spring:
   r2dbc:
-    url: r2dbc:h2:mem:///userdb
-    username:
-    password:
+#    url: r2dbc:h2:mem:///userdb
+    url: r2dbc:postgresql://localhost:5431/userdb
+    username: admin
+    password: userpass
+
+

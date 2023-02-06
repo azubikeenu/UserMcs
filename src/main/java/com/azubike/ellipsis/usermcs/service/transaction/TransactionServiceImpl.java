@@ -3,11 +3,13 @@ package com.azubike.ellipsis.usermcs.service.transaction;
 import com.azubike.ellipsis.usermcs.dto.request.TransactionRequestDto;
 import com.azubike.ellipsis.usermcs.dto.response.TransactionResponseDto;
 import com.azubike.ellipsis.usermcs.dto.response.TransactionStatus;
+import com.azubike.ellipsis.usermcs.dto.response.UserTransactionResponseDto;
 import com.azubike.ellipsis.usermcs.repository.UserRepository;
 import com.azubike.ellipsis.usermcs.repository.UserTransactionRepository;
 import com.azubike.ellipsis.usermcs.utils.EntityMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -28,5 +30,10 @@ public class TransactionServiceImpl implements TransactionService {
                 EntityMapper.transactionRequestToResponse(requestDto, TransactionStatus.APPROVED))
         .defaultIfEmpty(
             EntityMapper.transactionRequestToResponse(requestDto, TransactionStatus.DECLINED));
+  }
+
+  @Override
+  public Flux<UserTransactionResponseDto> getAllUserTransactions(int userId) {
+       return transactionRepository.findByUserId(userId).map(EntityMapper::userTransactionToResponse);
   }
 }
